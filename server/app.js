@@ -1,5 +1,6 @@
 import express from 'express';
 const app = express();
+import { Server } from "socket.io";
 
 app.get('/' , (req,res) => {
     res.send('Server is Running...');
