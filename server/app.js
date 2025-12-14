@@ -5,7 +5,14 @@ import { createServer } from 'http'; // Imp Import
 const app = express();
 const server = createServer(app); // Imp Import
 
-const io = new Server(server);
+const io = new Server(server, {
+    cors : {
+        origin : 'http://localhost:5173',
+        methods : [ 'GET', 'POST' ],
+        credentials : true,
+
+    }
+});
 
 
 app.get('/' , (req,res) => {
@@ -13,11 +20,13 @@ app.get('/' , (req,res) => {
 });
 
 // Socket.IO
-io.on( 'connection' , ()=> {
-    console.log(`User Connected with socket id ${socket.id}`);
+io.on( 'connection' , (socket)=> {
+    console.log(`User Connected with socket id - ${socket.id}`);
 } )
 
 const port = 3000;
-app.listen( port, () => {
+
+// server.listen = It doesn't create new Instance
+server.listen( port, () => {
     console.log(`Server is Running on Port ${port}`);
 });
