@@ -23,10 +23,13 @@ app.get('/' , (req,res) => {
 io.on( 'connection' , (socket)=> {
     console.log(`User Connected -- socket id - ${socket.id}`);
 
-    // Event receive : message
+    // Event : message listener from frontend user (socket)
     socket.on( 'message', (data) => {
         console.log(data);
-        // io.emit( 'message', data );
+
+        // Event : receive msg
+        // This event emit the data of "message" event
+        socket.broadcast.emit( 'receive-message', data );
     } )
 
     // Event : disconnect
