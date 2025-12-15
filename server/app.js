@@ -21,8 +21,20 @@ app.get('/' , (req,res) => {
 
 // Socket.IO
 io.on( 'connection' , (socket)=> {
-    console.log(`User Connected with socket id - ${socket.id}`);
-} )
+    console.log(`User Connected -- socket id - ${socket.id}`);
+
+    // Event receive : message
+    socket.on( 'message', (data) => {
+        console.log(data);
+        // io.emit( 'message', data );
+    } )
+
+    // Event : disconnect
+    socket.on( 'disconnect', () => {
+        console.log( 'User Disconnected -- socket id - ', socket.id );
+    } )
+    
+})
 
 const port = 3000;
 
