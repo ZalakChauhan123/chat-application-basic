@@ -1,0 +1,12 @@
+Methods for High Level Functionality
+------------------------------------
+
+-----------------
+IMP POINT TO NOTE
+-----------------
+io = Message sent to Entire Circute (send to all available sockets(users))
+
+
+io.emit = For Send Message to all connected Sockets(Users).
+socket.broadcast.emit = For Send Message to all connected Sockets(Users) EXCEPT Sender.
+socket.on = For Message Receive
