@@ -36,7 +36,12 @@ const App = () => {
       // the server doesn't need to create it.
       socket.on( 'connect' , () => {
         console.log( `Connected Socket Id ${socket.id}` );
-      })
+      });
+
+      // Event receive : receive-message
+      socket.on( 'receive-message' , ( msg ) => {
+        console.log( msg );
+      } )
 
       // Event receive : Welcome
       socket.on( 'welcome', (message) => { console.log(message) } );
