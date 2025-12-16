@@ -24,12 +24,11 @@ io.on( 'connection' , (socket)=> {
     console.log(`User Connected -- socket id - ${socket.id}`);
 
     // Event : message listener from frontend user (socket)
-    socket.on( 'message', (data) => {
-        console.log(data);
+    socket.on( 'message', ({room, message}) => {
+        console.log({room, message});
 
-        // Event : receive msg
-        // This event emit the data of "message" event
-        socket.broadcast.emit( 'receive-message', data );
+        // This event emit the data(roomId & msg) of "message" event
+        socket.to(room).emit( 'receive-message', message );
     } )
 
     // Event : disconnect
