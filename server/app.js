@@ -29,7 +29,13 @@ io.on( 'connection' , (socket)=> {
 
         // This event emit the data(roomId & msg) of "message" event
         socket.to(room).emit( 'receive-message', message );
-    } )
+    });
+
+    // Event : Join Room
+    socket.on( "join-room", (room) => {
+        socket.join(room);
+        console.log(`User Joined room ${room}`);
+    });
 
     // Event : disconnect
     socket.on( 'disconnect', () => {
